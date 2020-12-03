@@ -62,6 +62,23 @@ export const Form = styled.form<FormProps>`
   }
 `;
 
+export const Button = styled.button`
+  border: none;
+  position: absolute;
+  right: 400px;
+  top: 46px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    color: red;
+    border: none;
+    margin-right: 8px;
+  }
+`;
+
 export const Error = styled.span`
   display: block;
   color: #c53030;
