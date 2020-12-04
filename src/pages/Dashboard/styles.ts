@@ -7,6 +7,28 @@ interface FormProps {
 
 // Template literals
 
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #a8a8b3;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #666;
+    }
+
+    svg {
+      margin-right: 4px;
+    }
+  }
+`;
+
 export const Title = styled.h1`
   font-size: 48px;
   color: #3a3a3a;
@@ -64,13 +86,16 @@ export const Form = styled.form<FormProps>`
 
 export const Button = styled.button`
   border: none;
-  position: absolute;
-  right: 400px;
-  top: 46px;
+
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateX(10px);
+  }
 
   svg {
     color: red;

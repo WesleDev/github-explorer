@@ -1,12 +1,11 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 
 import { FiChevronRight, FiXCircle } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logoImg from '../../assets/logo.svg';
 import api from '../../services/api';
-import Repository from '../Repository';
 
-import { Title, Form, Repositories, Error, Button } from './styles';
+import { Header, Title, Form, Repositories, Error, Button } from './styles';
 
 interface Repository {
   full_name: string;
@@ -18,8 +17,6 @@ interface Repository {
 }
 
 const Dashboard: React.FC = () => {
-  const history = useHistory();
-
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>(() => {
@@ -74,12 +71,14 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <img src={logoImg} alt="Github Explorer" />
-      <Button onClick={clearLocalStorage}>
-        <FiXCircle size={32} />
+      <Header>
+        <img src={logoImg} alt="Github Explorer" />
+        <Button onClick={clearLocalStorage}>
+          <FiXCircle size={32} />
 
-        <p>Limpar Histórico</p>
-      </Button>
+          <p>Limpar Histórico</p>
+        </Button>
+      </Header>
       <Title>Explore repositórios no Github</Title>
 
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
@@ -95,7 +94,10 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map(repository => (
-          <a key={repository.full_name} href="teste">
+          <Link
+            key={repository.full_name}
+            to={`/repository/${repository.full_name}`}
+          >
             <img
               src={repository.owner.avatar_url}
               alt={repository.owner.login}
@@ -106,7 +108,7 @@ const Dashboard: React.FC = () => {
             </div>
 
             <FiChevronRight size={20} />
-          </a>
+          </Link>
         ))}
       </Repositories>
     </>
